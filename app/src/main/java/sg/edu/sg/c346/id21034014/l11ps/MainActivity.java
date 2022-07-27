@@ -14,11 +14,11 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText etTitle, etSinger, etYear;
+    EditText etTitle, etgenre, etYear;
     Button btnInsert, btnShow;
     RadioGroup rgStars;
-    ArrayList<Song> al;
-    ArrayAdapter<Song> aa;
+    ArrayList<Movie> al;
+    ArrayAdapter<Movie> aa;
 
 
     @Override
@@ -27,15 +27,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         etTitle = findViewById(R.id.etTitle);
-        etSinger = findViewById(R.id.etSingers);
+        etgenre = findViewById(R.id.etgenre2);
         etYear = findViewById(R.id.etYear);
         rgStars = findViewById(R.id.rgStars);
         btnInsert = findViewById(R.id.btnUpdate);
         btnShow = findViewById(R.id.btnDelete);
 
 
-        al = new ArrayList<Song>();
-        aa = new ArrayAdapter<Song>(this, android.R.layout.simple_list_item_1,al);
+        al = new ArrayList<Movie>();
+        aa = new ArrayAdapter<Movie>(this, android.R.layout.simple_list_item_1,al);
 
         btnInsert.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,13 +43,13 @@ public class MainActivity extends AppCompatActivity {
 
 
                 String title = etTitle.getText().toString();
-                String singer = etSinger.getText().toString();
+                String genre = etgenre.getText().toString();
                 int year = Integer.parseInt(etYear.getText().toString());
                 int stars = 1;
                 DBHelper dbh = new DBHelper(MainActivity.this);
-                long inserted_song = dbh.insertSong(title,singer,year, stars);
+                long inserted_song = dbh.insertmovie(title,genre,year, stars);
                 al.clear();
-                al.addAll(dbh.getAllSongs());
+                al.addAll(dbh.getAllmovies());
                 aa.notifyDataSetChanged();
                 Toast.makeText(MainActivity.this, "Insert successful",
                         Toast.LENGTH_SHORT).show();

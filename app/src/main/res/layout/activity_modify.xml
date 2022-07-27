@@ -12,6 +12,7 @@
         android:text="@string/idsong" />
 
     <EditText
+        android:id="@+id/etID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -41,7 +42,7 @@
         android:text="@string/singers" />
 
     <EditText
-        android:id="@+id/etSingers"
+        android:id="@+id/etgenre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"

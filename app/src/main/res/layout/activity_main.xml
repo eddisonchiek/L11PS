@@ -25,10 +25,10 @@
         android:id="@+id/tvSinger"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/singers" />
+        android:text="@string/Genre" />
 
     <EditText
-        android:id="@+id/etSingers"
+        android:id="@+id/etgenre2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"

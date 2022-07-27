@@ -12,6 +12,16 @@
     <string name="showall">Show All 5 Stars Songs</string>
 
     <string name="app_name2">Demo Spinner App</string>
+    <string name="Genre" />
+    <string name="idsong" />
+    <string name="four" />
+    <string name="one" />
+    <string name="three" />
+    <string name="five" />
+    <string name="update" />
+    <string name="two" />
+    <string name="cancel" />
+    <string name="delete" />
     <string-array name="spinnerItems">
         <item>G</item>
         <item>PG</item>

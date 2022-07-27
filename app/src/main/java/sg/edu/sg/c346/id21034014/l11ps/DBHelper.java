@@ -11,14 +11,14 @@ import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "ndps.db";
-    private static final int DATABASE_VERSION = 2;
-    private static final String TABLE_Movie = "Movie";
+    private static final String DATABASE_NAME = "ndpmovies.db";
+    private static final int DATABASE_VERSION = 1;
+    private static final String TABLE_MOVIE = "movie";
     private static final String COLUMN_ID = "_id";
     private static final String COLUMN_TITLE = "title";
-    private static final String COLUMN_SINGERS = "singers";
+    private static final String COLUMN_GENRE = "genre";
     private static final String COLUMN_YEARS = "year";
-    private static final String COLUMN_STARS = "star";
+    private static final String COLUMN_RATINGS = "rating";
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -26,98 +26,97 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createMovieTableSql = "CREATE TABLE " + TABLE_Movie + "("
+        String createmovieTableSql = "CREATE TABLE " + TABLE_MOVIE + "("
                 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + COLUMN_SINGERS +" TEXT ) ";
-        db.execSQL(createMovieTableSql);
+                + COLUMN_GENRE +" TEXT ) ";
+        db.execSQL(createmovieTableSql);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_Movie);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MOVIE);
         onCreate(db);
     }
 
-    public long insertMovie(String title, String singers, int year, int stars) {
+    public long insertmovie(String title, String genre, int year, int rating) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_TITLE, title);
-        values.put(COLUMN_SINGERS, singers);
+        values.put(COLUMN_GENRE, genre);
         values.put(COLUMN_YEARS, year);
-        values.put(COLUMN_STARS, stars);
-        long result = db.insert(TABLE_Movie, null, values);
+        values.put(COLUMN_RATINGS, rating);
+        long result = db.insert(TABLE_MOVIE, null, values);
         db.close();
         Log.d("SQL Insert","ID:"+ result); //id returned, should'nt be -1
         return result;
 
     }
 
-    public ArrayList<Movie> getAllMovies() {
-        ArrayList<Movie> Movies = new ArrayList<Movie>();
+    public ArrayList<Movie> getAllmovies() {
+        ArrayList<Movie> movies = new ArrayList<Movie>();
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String[] columns= {COLUMN_ID, COLUMN_TITLE, COLUMN_SINGERS, COLUMN_YEARS, COLUMN_STARS};
-        Cursor cursor = db.query(TABLE_Movie, columns, null, null,
+        String[] columns= {COLUMN_ID, COLUMN_TITLE, COLUMN_GENRE, COLUMN_YEARS, COLUMN_RATINGS};
+        Cursor cursor = db.query(TABLE_MOVIE, columns, null, null,
                 null, null, null, null);
 
         if (cursor.moveToFirst()) {
             do {
                 String title = cursor.getString(0);
-                String singers = cursor.getString(1);
+                String genre = cursor.getString(1);
                 int year = cursor.getInt(2);
-                int stars = cursor.getInt(3);
-                Movie Movie = new Movie(title, singers, year, stars);
-                Movies.add(Movie);
+                int rating = cursor.getInt(3);
+                Movie movie = new Movie(title, genre, year, rating);
+                movies.add(movie);
             } while (cursor.moveToNext());
         }
         cursor.close();
         db.close();
-        return Movies;
+        return movies;
     }
 
-    public ArrayList<Movie> getAllMoviesByStars(int stars) {
-        ArrayList<Movie> Movies = new ArrayList<Movie>();
+    public ArrayList<Movie> getAllmoviesByRating(String rating) {
+        ArrayList<Movie> movies = new ArrayList<Movie>();
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String[] columns= {COLUMN_ID, COLUMN_TITLE, COLUMN_SINGERS, COLUMN_YEARS};
-        Cursor cursor = db.query(TABLE_Movie, columns, null, null,
-                null, null, COLUMN_STARS , null);
+        String[] columns= {COLUMN_ID, COLUMN_TITLE, COLUMN_GENRE, COLUMN_YEARS};
+        Cursor cursor = db.query(TABLE_MOVIE, columns, null, null,
+                null, null, COLUMN_RATINGS , null);
 
         if (cursor.moveToFirst()) {
             do {
                 String title = cursor.getString(0);
-                String singers = cursor.getString(1);
+                String genre = cursor.getString(1);
                 int year = cursor.getInt(2);
-                Movie Movie = new com.example.ndpMovies.Movie(title, singers, year, 1);
-                Movies.add(Movie);
+                movies.add(Movie);
             } while (cursor.moveToNext());
         }
         cursor.close();
         db.close();
-        return Movies;
+        return movies;
     }
 
-    public int updateMovie(Movie data){
+    public int updatemovie(Movie data){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_TITLE, data.getTitle());
-        values.put(COLUMN_SINGERS, data.getSingers());
+        values.put(COLUMN_GENRE, data.getGenre());
         values.put(COLUMN_YEARS, data.getYear());
-        values.put(COLUMN_STARS, data.getStar());
+        values.put(COLUMN_RATINGS, data.getRating());
         String condition = COLUMN_ID + "= ?";
         String[] args = {String.valueOf(data.get_id())};
-        int result = db.update(TABLE_Movie, values, condition, args);
+        int result = db.update(TABLE_MOVIE, values, condition, args);
         db.close();
         return result;
     }
 
-    public int deleteMovie(int id){
+    public int deletemovie(int id){
         SQLiteDatabase db = this.getWritableDatabase();
         String condition = COLUMN_ID + "= ?";
         String[] args = {String.valueOf(id)};
-        int result = db.delete(TABLE_Movie, condition, args);
+        int result = db.delete(TABLE_MOVIE, condition, args);
         db.close();
         return result;
     }

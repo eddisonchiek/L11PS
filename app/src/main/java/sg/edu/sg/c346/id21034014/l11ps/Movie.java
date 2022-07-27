@@ -6,26 +6,26 @@ public class Movie implements Serializable {
 
     private int _id;
     private String title;
-    private String singers;
+    private String genre;
     private int year;
-    private int stars;
+    private int rating;
 
-    public Song(String title, String singers, int year, int stars) {
+    public Movie(String title, String genre, int year, int rating) {
         this.title = title;
-        this.singers = singers;
+        this.genre = genre;
         this.year = year;
-        this.stars = stars;
+        this.rating = rating;
     }
 
     public int get_id() { return _id; }
 
     public String getTitle() {return title;}
 
-    public String getSingers() {return singers;}
+    public String getGenre() {return genre;}
 
     public int getYear() {return year;}
 
-    public int getStar() {return stars;}
+    public int getRating() {return rating;}
 
 
 }
