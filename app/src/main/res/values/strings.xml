@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">L11PS</string>
+    <string name="app_name">NDPSongs</string>
+    <string name="songtitle">Song Title:</string>
+    <string name="entersong">Enter song title </string>
+    <string name="singers">Singer:</string>
+    <string name="entersinger">Enter singer name </string>
+    <string name="year">Year:</string>
+    <string name="enteryear">Enter year of release </string>
+    <string name="stars">Stars:</string>
+    <string name="insert">Insert</string>
+    <string name="showlist">Show List</string>
+    <string name="showall">Show All 5 Stars Songs</string>
 </resources>
