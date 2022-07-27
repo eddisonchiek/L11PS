@@ -6,7 +6,7 @@
     <string name="entersinger">Enter singer name </string>
     <string name="year">Year:</string>
     <string name="enteryear">Enter year of release </string>
-    <string name="stars">Stars:</string>
+    <string name="stars">Rating:</string>
     <string name="insert">Insert</string>
     <string name="showlist">Show List</string>
     <string name="showall">Show All 5 Stars Songs</string>
