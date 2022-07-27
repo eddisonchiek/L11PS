@@ -11,9 +11,9 @@ import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "ndpsongs.db";
+    private static final String DATABASE_NAME = "ndps.db";
     private static final int DATABASE_VERSION = 2;
-    private static final String TABLE_SONG = "song";
+    private static final String TABLE_Movie = "Movie";
     private static final String COLUMN_ID = "_id";
     private static final String COLUMN_TITLE = "title";
     private static final String COLUMN_SINGERS = "singers";
@@ -26,39 +26,39 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createSongTableSql = "CREATE TABLE " + TABLE_SONG + "("
+        String createMovieTableSql = "CREATE TABLE " + TABLE_Movie + "("
                 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + COLUMN_SINGERS +" TEXT ) ";
-        db.execSQL(createSongTableSql);
+        db.execSQL(createMovieTableSql);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SONG);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_Movie);
         onCreate(db);
     }
 
-    public long insertSong(String title, String singers, int year, int stars) {
+    public long insertMovie(String title, String singers, int year, int stars) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_TITLE, title);
         values.put(COLUMN_SINGERS, singers);
         values.put(COLUMN_YEARS, year);
         values.put(COLUMN_STARS, stars);
-        long result = db.insert(TABLE_SONG, null, values);
+        long result = db.insert(TABLE_Movie, null, values);
         db.close();
         Log.d("SQL Insert","ID:"+ result); //id returned, should'nt be -1
         return result;
 
     }
 
-    public ArrayList<Song> getAllSongs() {
-        ArrayList<Song> songs = new ArrayList<Song>();
+    public ArrayList<Movie> getAllMovies() {
+        ArrayList<Movie> Movies = new ArrayList<Movie>();
 
         SQLiteDatabase db = this.getReadableDatabase();
 
         String[] columns= {COLUMN_ID, COLUMN_TITLE, COLUMN_SINGERS, COLUMN_YEARS, COLUMN_STARS};
-        Cursor cursor = db.query(TABLE_SONG, columns, null, null,
+        Cursor cursor = db.query(TABLE_Movie, columns, null, null,
                 null, null, null, null);
 
         if (cursor.moveToFirst()) {
@@ -67,22 +67,22 @@ public class DBHelper extends SQLiteOpenHelper {
                 String singers = cursor.getString(1);
                 int year = cursor.getInt(2);
                 int stars = cursor.getInt(3);
-                Song song = new Song(title, singers, year, stars);
-                songs.add(song);
+                Movie Movie = new Movie(title, singers, year, stars);
+                Movies.add(Movie);
             } while (cursor.moveToNext());
         }
         cursor.close();
         db.close();
-        return songs;
+        return Movies;
     }
 
-    public ArrayList<Song> getAllSongsByStars(int stars) {
-        ArrayList<Song> songs = new ArrayList<Song>();
+    public ArrayList<Movie> getAllMoviesByStars(int stars) {
+        ArrayList<Movie> Movies = new ArrayList<Movie>();
 
         SQLiteDatabase db = this.getReadableDatabase();
 
         String[] columns= {COLUMN_ID, COLUMN_TITLE, COLUMN_SINGERS, COLUMN_YEARS};
-        Cursor cursor = db.query(TABLE_SONG, columns, null, null,
+        Cursor cursor = db.query(TABLE_Movie, columns, null, null,
                 null, null, COLUMN_STARS , null);
 
         if (cursor.moveToFirst()) {
@@ -90,16 +90,16 @@ public class DBHelper extends SQLiteOpenHelper {
                 String title = cursor.getString(0);
                 String singers = cursor.getString(1);
                 int year = cursor.getInt(2);
-                Song song = new com.example.ndpsongs.Song(title, singers, year, 1);
-                songs.add(song);
+                Movie Movie = new com.example.ndpMovies.Movie(title, singers, year, 1);
+                Movies.add(Movie);
             } while (cursor.moveToNext());
         }
         cursor.close();
         db.close();
-        return songs;
+        return Movies;
     }
 
-    public int updateSong(Song data){
+    public int updateMovie(Movie data){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_TITLE, data.getTitle());
@@ -108,16 +108,16 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(COLUMN_STARS, data.getStar());
         String condition = COLUMN_ID + "= ?";
         String[] args = {String.valueOf(data.get_id())};
-        int result = db.update(TABLE_SONG, values, condition, args);
+        int result = db.update(TABLE_Movie, values, condition, args);
         db.close();
         return result;
     }
 
-    public int deleteSong(int id){
+    public int deleteMovie(int id){
         SQLiteDatabase db = this.getWritableDatabase();
         String condition = COLUMN_ID + "= ?";
         String[] args = {String.valueOf(id)};
-        int result = db.delete(TABLE_SONG, condition, args);
+        int result = db.delete(TABLE_Movie, condition, args);
         db.close();
         return result;
     }
