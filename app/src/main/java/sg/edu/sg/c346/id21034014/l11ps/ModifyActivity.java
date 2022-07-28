@@ -34,7 +34,7 @@ public class ModifyPage extends AppCompatActivity {
         etMovieTitle = findViewById(R.id.etTitle);
         etMovieGenre = findViewById(R.id.etgenre);
         etMovieYear = findViewById(R.id.etYear);
-        spn = findViewById(R.id.spn);
+        spn = findViewById(R.id.spnRating);
         btnCancel = findViewById(R.id.btnCancel);
         btnUpdate = findViewById(R.id.btnUpdate);
         btnDelete = findViewById(R.id.btnDelete);

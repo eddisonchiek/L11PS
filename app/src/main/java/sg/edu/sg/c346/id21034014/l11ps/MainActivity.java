@@ -24,9 +24,8 @@ public class MainActivity extends AppCompatActivity {
     Spinner spnRating;
     Button btnInsert, btnShowList;
     String movieRating;
-    //    ListView lvTest;
     ArrayList<Movies> alMovieList;
-//    CustomAdapter caMovie;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +44,8 @@ public class MainActivity extends AppCompatActivity {
         btnInsert =findViewById(R.id.btnInsert);
         btnShowList =findViewById(R.id.btnShowList);
 
-        //test
-//        lvTest = findViewById(R.id.listViewTest);
         alMovieList = new ArrayList<>();
-//        caMovie = new CustomAdapter(this,R.layout.row,alMovieList);
-//        lvTest.setAdapter(caMovie);
+
 
         populateData();
 
@@ -134,8 +130,5 @@ public class MainActivity extends AppCompatActivity {
         DBHelper dbh = new DBHelper(MainActivity.this);
         Movies item1 = new Movies(1,"Title","Genre",2111,"Nice");
         alMovieList.add(item1);
-//        alMovieList.clear();
-//        alMovieList.addAll(dbh.getAllMovies());
-//        caMovie.notifyDataSetChanged();
     }
 }
