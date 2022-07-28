@@ -30,7 +30,7 @@ public class CustomAdapter extends ArrayAdapter {
         View rowView = inflater.inflate(layout_id,parent,false);
 
         TextView tvTitle = rowView.findViewById(R.id.etTitle);
-        TextView tvGenre = rowView.findViewById(R.id.etgenre2);
+        TextView tvGenre = rowView.findViewById(R.id.etgenre);
         TextView tvYear = rowView.findViewById(R.id.etYear);
         ImageView ivRating = rowView.findViewById(R.id.rgStars);
 
