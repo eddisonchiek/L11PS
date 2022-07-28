@@ -1,74 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/tvTitle"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/songtitle" />
+        android:text="Movie Title" />
 
     <EditText
         android:id="@+id/etTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:text="@string/entersong" />
+        android:inputType="text"
+        android:hint="Enter movie title here"/>
 
     <TextView
-        android:id="@+id/tvSinger"
+        android:id="@+id/tvGenre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/Genre" />
+        android:text="Genre" />
 
     <EditText
-        android:id="@+id/etgenre2"
+        android:id="@+id/etGenre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:text="@string/entersinger" />
+        android:hint="Enter genre here"
+        android:inputType="text" />
 
     <TextView
         android:id="@+id/tvYear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/year" />
+        android:text="Year" />
 
     <EditText
         android:id="@+id/etYear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:text="@string/enteryear" />
+        android:inputType="number"
+        android:digits="1234567890"
+        android:maxLength="4"
+        android:hint="Enter year of release here"/>
 
     <TextView
-        android:id="@+id/tvStars"
+        android:id="@+id/tvRating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/stars" />
+        android:text="Rating" />
 
-    <LinearLayout
+    <Spinner
+        android:id="@+id/spnRating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-
-        <Spinner
-            android:id="@+id/spn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:entries="@array/spinnerItems" />
-    </LinearLayout>
+        android:entries="@array/spinnerItems"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -80,16 +73,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/insert"
-            app:backgroundTint="#FF0000" />
+            android:text="Insert" />
 
         <Button
             android:id="@+id/btnShowList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/showlist"
-            app:backgroundTint="#FF0000" />
+            android:text="Show List" />
     </LinearLayout>
+
+    <ListView
+        android:id="@+id/listViewTest"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>
