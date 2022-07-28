@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView tvTitle, tvGenre, tvYear, tvRating;
+    TextView tvTitle, etGenre, etYear, rgStars;
     EditText etTitle, etGenre, etYear;
     Spinner spnRating;
     Button btnInsert, btnShowList;
@@ -34,12 +34,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        etTitle = findViewById(R.id.etTitle);
-        etGenre = findViewById(R.id.etGenre2);
+        tvTitle = findViewById(R.id.etTitle);
+        etGenre = findViewById(R.id.etGenre);
         etYear =findViewById(R.id.etYear);
         rgStars =findViewById(R.id.rgStars);
         etTitle =findViewById(R.id.etTitle);
-        etGenre =findViewById(R.id.etGenre);
+        etGenre =findViewById(R.id.etGenre2);
         etYear =findViewById(R.id.etYear);
         spnRating =findViewById(R.id.spnRating);
         btnInsert =findViewById(R.id.btnInsert);
