@@ -2,60 +2,140 @@ package sg.edu.sg.c346.id21034014.l11ps;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioGroup;
+import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText etTitle, etgenre, etYear;
-    Button btnInsert, btnShow;
-    RadioGroup rgStars;
-    ArrayList<Movie> al;
-    ArrayAdapter<Movie> aa;
-
+    TextView tvTitle, tvGenre, tvYear, tvRating;
+    EditText etTitle, etGenre, etYear;
+    Spinner spnRating;
+    Button btnInsert, btnShowList;
+    String movieRating;
+    //    ListView lvTest;
+    ArrayList<Movies> alMovieList;
+//    CustomAdapter caMovie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         etTitle = findViewById(R.id.etTitle);
-        etgenre = findViewById(R.id.etgenre2);
-        etYear = findViewById(R.id.etYear);
-        rgStars = findViewById(R.id.rgStars);
-        btnInsert = findViewById(R.id.btnUpdate);
-        btnShow = findViewById(R.id.btnDelete);
+        etGenre = findViewById(R.id.etGenre2);
+        etYear =findViewById(R.id.etYear);
+        rgStars =findViewById(R.id.rgStars);
+        etTitle =findViewById(R.id.etTitle);
+        etGenre =findViewById(R.id.etGenre);
+        etYear =findViewById(R.id.etYear);
+        spnRating =findViewById(R.id.spnRating);
+        btnInsert =findViewById(R.id.btnInsert);
+        btnShowList =findViewById(R.id.btnShowList);
+
+        //test
+//        lvTest = findViewById(R.id.listViewTest);
+        alMovieList = new ArrayList<>();
+//        caMovie = new CustomAdapter(this,R.layout.row,alMovieList);
+//        lvTest.setAdapter(caMovie);
+
+        populateData();
 
 
-        al = new ArrayList<Movie>();
-        aa = new ArrayAdapter<Movie>(this, android.R.layout.simple_list_item_1,al);
+        btnShowList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, Show_Movies.class);
+                startActivity(i);
+            }});
 
         btnInsert.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
-
-                String title = etTitle.getText().toString();
-                String genre = etgenre.getText().toString();
-                int year = Integer.parseInt(etYear.getText().toString());
-                int stars = 1;
+            public void onClick(View view) {
+                String movietitle = etTitle.getText().toString();
+                String moviegenre = etGenre.getText().toString();
+                String yearString = etYear.getText().toString();
+                int year = Integer.parseInt(yearString);
+                String movieratingfinal = movieRating + "";
                 DBHelper dbh = new DBHelper(MainActivity.this);
-                long inserted_song = dbh.insertmovie(title,genre,year, stars);
-                al.clear();
-                al.addAll(dbh.getAllmovies());
-                aa.notifyDataSetChanged();
-                Toast.makeText(MainActivity.this, "Insert successful",
-                        Toast.LENGTH_SHORT).show();
+                long inserted_id =dbh.insertMovie(movietitle,moviegenre,year,movieratingfinal);
+
+                if (inserted_id != -1) {
+                    alMovieList.clear();
+                    alMovieList.addAll(dbh.getAllMovies());
+//                    caMovie.notifyDataSetChanged();
+                    Toast.makeText(MainActivity.this, "Insert successful",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Insert not successful",
+                            Toast.LENGTH_SHORT).show();
+                }
+                for(int i = 0; i < alMovieList.size();i++)
+                {
+                    Log.d("ratings",alMovieList.get(i).getMovierating());
+                }
+            }
+        });
+
+        spnRating.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        String spinnerItems1 = spnRating.getSelectedItem().toString();
+                        movieRating = spinnerItems1;
+                        break;
+                    case 1:
+                        String spinnerItems2 = spnRating.getSelectedItem().toString();
+                        movieRating = spinnerItems2;
+                        break;
+                    case 2:
+                        String spinnerItems3 = spnRating.getSelectedItem().toString();
+                        movieRating = spinnerItems3;
+                        break;
+                    case 3:
+                        String spinnerItems4 = spnRating.getSelectedItem().toString();
+                        movieRating = spinnerItems4;
+                        break;
+                    case 4:
+                        String spinnerItems5 = spnRating.getSelectedItem().toString();
+                        movieRating = spinnerItems5;
+                        break;
+                    case 5:
+                        String spinnerItems6 = spnRating.getSelectedItem().toString();
+                        movieRating = spinnerItems6;
+                        break;
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
 
 
+    }
+
+    void populateData(){
+        DBHelper dbh = new DBHelper(MainActivity.this);
+        Movies item1 = new Movies(1,"Title","Genre",2111,"Nice");
+        alMovieList.add(item1);
+//        alMovieList.clear();
+//        alMovieList.addAll(dbh.getAllMovies());
+//        caMovie.notifyDataSetChanged();
     }
 }
