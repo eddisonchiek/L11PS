@@ -43,7 +43,7 @@ public class ShowListActivity extends AppCompatActivity {
                     position, long identity) {
                 Movies data = alMovieList.get(position);
                 Intent i = new Intent(ShowListActivity.this,
-                        ModifyPage.class);
+                        Modify.class);
                 i.putExtra("data", data);
                 startActivity(i);
             }

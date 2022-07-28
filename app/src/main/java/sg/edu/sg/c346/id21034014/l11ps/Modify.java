@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class ModifyPage extends AppCompatActivity {
+public class Modify extends AppCompatActivity {
 
     EditText etMovieID, etMovieTitle, etMovieGenre, etMovieYear;
     Spinner spn;
@@ -28,7 +28,7 @@ public class ModifyPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_modify);
+        setContentView(R.layout.activity_modify2);
 
         etMovieID = findViewById(R.id.etID);
         etMovieTitle = findViewById(R.id.etTitle);
@@ -79,7 +79,7 @@ public class ModifyPage extends AppCompatActivity {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DBHelper dbh = new DBHelper(ModifyPage.this);
+                DBHelper dbh = new DBHelper(Modify.this);
                 data.setMovieTitle(etMovieTitle.getText().toString());
                 data.setMoviegenre(etMovieGenre.getText().toString());
                 String yearString = etMovieYear.getText().toString();
@@ -99,7 +99,7 @@ public class ModifyPage extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DBHelper dbh = new DBHelper(ModifyPage.this);
+                DBHelper dbh = new DBHelper(Modify.this);
                 int result = dbh.deleteNote(data.getMovieid());
                 Log.d("Result", result + "");
                 finish();
