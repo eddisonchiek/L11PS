@@ -22,10 +22,6 @@ public class Movies implements Serializable {
         return movieid;
     }
 
-    public void setMovieid(int movieid) {
-        this.movieid = movieid;
-    }
-
     public String getMovieTitle() {
         return movieTitle;
     }
@@ -58,7 +54,5 @@ public class Movies implements Serializable {
         this.movierating = movierating;
     }
 
-    public String toStringRating(){
-        return "rating: " + getMovierating();
-    }
+
 }
