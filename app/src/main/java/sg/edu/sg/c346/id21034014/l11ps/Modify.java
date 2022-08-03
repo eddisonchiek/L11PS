@@ -109,10 +109,18 @@ public class Modify extends AppCompatActivity {
                 int year = Integer.parseInt(yearString);
                 data.setMovieyear(year);
                 data.setMovierating(movieRating);
+                if(data.getMovieyear() >= 1877){
                 dbh.updateNote(data);
                 dbh.close();
+                finish();}
+                else{
+                    Toast.makeText(Modify.this, "Invalid Movie Date",
+                            Toast.LENGTH_SHORT).show();
 
-                finish();
+                }
+
+
+
 
             }
         });

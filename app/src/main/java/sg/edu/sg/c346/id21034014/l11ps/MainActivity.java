@@ -66,22 +66,26 @@ public class MainActivity extends AppCompatActivity {
                 int year = Integer.parseInt(yearString);
                 String movieratingfinal = movieRating + "";
                 DBHelper dbh = new DBHelper(MainActivity.this);
-                long inserted_id =dbh.insertMovie(movietitle,moviegenre,year,movieratingfinal);
 
-                if (inserted_id != -1) {
+
+                if(year >= 1877){
+                    long inserted_id =dbh.insertMovie(movietitle,moviegenre,year,movieratingfinal);
+
+                    if (inserted_id != -1){
                     alMovieList.clear();
                     alMovieList.addAll(dbh.getAllMovies());
-//                    caMovie.notifyDataSetChanged();
+                    // alMovie.notifyDataSetChanged();
                     Toast.makeText(MainActivity.this, "Insert successful",
                             Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(MainActivity.this, "Insert not successful",
+                    }
+                }
+                else{
+                    Toast.makeText(MainActivity.this, "Invalid Movie Date",
                             Toast.LENGTH_SHORT).show();
+
+
                 }
-                for(int i = 0; i < alMovieList.size();i++)
-                {
-                    Log.d("ratings",alMovieList.get(i).getMovierating());
-                }
+
             }
         });
 
