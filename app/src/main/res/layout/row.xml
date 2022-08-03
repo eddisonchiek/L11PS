@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textViewTitle"
+        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Title"
@@ -15,37 +15,27 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
     <TextView
-        android:id="@+id/textViewGenre"
+        android:id="@+id/tvGenre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Genre"
         android:textColor="@color/purple_700"/>
 
-<!--    btnInsert.setOnClickListener(new View.OnClickListener() {-->
-<!--    @Override-->
-<!--    public void onClick(View view) {-->
-<!--    String movietitle = etTitle.getText().toString();-->
-<!--    String moviegenre = etGenre.getText().toString();-->
-<!--    int year = Integer.parseInt(etYear.getText().toString());-->
-<!--    String movierating = "TEST";-->
-<!--    DBHelper dbh = new DBHelper(MainActivity.this);-->
-<!--    long inserted_id =dbh.insertMovie(movietitle,moviegenre,year,movierating);-->
-<!--    }-->
-<!--    });-->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textViewYear"
+            android:id="@+id/tvYear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Year"
             android:layout_margin="5dp"/>
 
         <ImageView
-            android:id="@+id/imageViewRating"
+            android:id="@+id/rgStars"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/rating_m18" />

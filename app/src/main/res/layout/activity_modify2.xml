@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    tools:context=".Modify">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewMovieID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/idsong" />
+        android:text="Movie ID"
+        />
 
     <EditText
         android:id="@+id/etID"
@@ -17,108 +20,60 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:text="@string/four" />
+        android:enabled="false"/>
 
     <TextView
-        android:id="@+id/tvTitle"
+        android:id="@+id/textViewMovieTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/songtitle" />
+        android:text="Movie Title" />
 
     <EditText
         android:id="@+id/etTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:text="@string/entersong" />
+        android:inputType="textPersonName" />
 
     <TextView
-        android:id="@+id/tvSinger"
+        android:id="@+id/textViewMovieGenre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/singers" />
+        android:text="Movie Genre" />
 
     <EditText
-        android:id="@+id/etgenre"
+        android:id="@+id/etGenre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:text="@string/entersinger" />
+        android:inputType="textPersonName" />
 
     <TextView
-        android:id="@+id/tvYear"
+        android:id="@+id/textViewMovieYear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/year" />
+        android:text="Movie Year" />
 
     <EditText
         android:id="@+id/etYear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:text="@string/enteryear" />
+        android:digits="1234567890"
+        android:maxLength="4"
+        android:inputType="number" />
 
     <TextView
-        android:id="@+id/tvStars"
+        android:id="@+id/textViewMovieRating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/stars" />
+        android:text="Movie Genre" />
 
-    <LinearLayout
+    <Spinner
+        android:id="@+id/spnRating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <RadioGroup
-            android:id="@+id/rgStars"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/rbtn1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/one" />
-
-            <RadioButton
-                android:id="@+id/rbtn2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/two" />
-
-            <RadioButton
-                android:id="@+id/rbtn3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/three" />
-
-            <RadioButton
-                android:id="@+id/rbtn4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/four" />
-
-            <RadioButton
-                android:id="@+id/rbtn5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/five" />
-        </RadioGroup>
-
-    </LinearLayout>
+        android:entries="@array/spinnerItems"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -130,21 +85,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/update" />
+            android:text="UPDATE" />
 
         <Button
             android:id="@+id/btnDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/delete" />
-
+            android:text="Delete" />
     </LinearLayout>
 
     <Button
         android:id="@+id/btnCancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/cancel" />
+        android:text="Cancel" />
 
 </LinearLayout>

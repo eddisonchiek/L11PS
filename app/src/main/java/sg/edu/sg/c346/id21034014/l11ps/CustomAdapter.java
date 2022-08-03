@@ -29,9 +29,9 @@ public class CustomAdapter extends ArrayAdapter {
 
         View rowView = inflater.inflate(layout_id,parent,false);
 
-        TextView tvTitle = rowView.findViewById(R.id.etTitle);
-        TextView tvGenre = rowView.findViewById(R.id.etgenre);
-        TextView tvYear = rowView.findViewById(R.id.etYear);
+        TextView tvTitle = rowView.findViewById(R.id.tvTitle);
+        TextView tvGenre = rowView.findViewById(R.id.tvGenre);
+        TextView tvYear = rowView.findViewById(R.id.tvYear);
         ImageView ivRating = rowView.findViewById(R.id.rgStars);
 
         Movies currentItem = moviesList.get(position);
