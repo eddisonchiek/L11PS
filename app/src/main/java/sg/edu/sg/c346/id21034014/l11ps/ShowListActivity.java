@@ -14,11 +14,10 @@ import java.util.ArrayList;
 public class ShowListActivity extends AppCompatActivity {
 
     ListView lvMovies;
-    Button btnShowAllPG13;
+    Button PG13;
     CustomAdapter caMovie;
     ArrayList<Movies> alMovieList;
 
-    Movies data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +28,7 @@ public class ShowListActivity extends AppCompatActivity {
         alMovieList = new ArrayList<Movies>();
         caMovie = new CustomAdapter(this,R.layout.row,alMovieList);
         lvMovies.setAdapter(caMovie);
-        btnShowAllPG13 = findViewById(R.id.btnShowPG13);
+        PG13 = findViewById(R.id.btnShowPG13);
 
         DBHelper dbh= new DBHelper(ShowListActivity.this);
         alMovieList.clear();
@@ -49,7 +48,7 @@ public class ShowListActivity extends AppCompatActivity {
             }
         });
 
-        btnShowAllPG13.setOnClickListener(new View.OnClickListener() {
+        PG13.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DBHelper dbh = new DBHelper(ShowListActivity.this);
