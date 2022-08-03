@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
 
     void populateData(){
         DBHelper dbh = new DBHelper(MainActivity.this);
-        Movies item1 = new Movies(1,"Title","Genre",2111,"Nice");
+        Movies item1 = new Movies(1,"test","Genre",2000,"test");
         alMovieList.add(item1);
     }
 }
